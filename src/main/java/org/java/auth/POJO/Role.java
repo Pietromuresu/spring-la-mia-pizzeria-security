@@ -2,6 +2,8 @@ package org.java.auth.POJO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 
@@ -10,6 +12,7 @@ import jakarta.validation.constraints.NotNull;
 public class Role {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id; 
 	
 	@NotNull(message="Il nome è un campo obbligatorio")
@@ -22,6 +25,7 @@ public class Role {
 	public Role(String name) {
 		
 		setName(name);
+		setId(id);
 	}
 	
 	

@@ -39,7 +39,10 @@
 					  method="post"
 					  class="w-25 d-flex"
 					  th:object="${ingredientToAdd}"
-					>						
+					>		
+					<input type="hidden" 
+th:name="${_csrf.parameterName}" 
+th:value="${_csrf.token}" />				
 						<input 
 						  class="form-control h-75 mt-1"	
 						  type="text"

@@ -27,7 +27,9 @@
 		
 		<form method="POST"
 		 th:object="${offer}" >
-			
+			<input type="hidden" 
+th:name="${_csrf.parameterName}" 
+th:value="${_csrf.token}" />
 			<input type="number" name="id" th:field="*{id}" hidden>
 			<label for="title" class="mt-3"> 
 				<strong>
