@@ -1,4 +1,4 @@
-# spring-la-mia-pizzeria-relazioni
+# spring-la-mia-pizzeria-security
 
 ## Todo
 ### Giorno 1 - index, layout, spring jpa
