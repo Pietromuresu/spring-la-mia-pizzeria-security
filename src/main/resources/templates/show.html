@@ -12,9 +12,7 @@
 </head>
 <body th:object="${pizza}">
 	
-		<header th:replace="~{frags/header :: header()}">
-		
-		</header>
+		<header th:replace="~{frags/header :: header()}"></header>
 
 	<div class="container mt-5 mb-5">	
 		
@@ -25,7 +23,10 @@
 				</h1>
 				
 				<div class="d-flex justify-content-center">		
-					<img class="pm-img-show" th:alt="*{name}" th:src="*{getFullFotoUrl(fotoUrl)}">   
+					<img
+					  class="pm-img-show"
+					  th:alt="*{name}"
+					  th:src="*{getFullFotoUrl(fotoUrl)}"> 
 				</div>
 				<div class="row mt-5">						
 					<div class=" col-8 text-center ">
@@ -33,12 +34,14 @@
 							<strong>					
 								Price:
 							</strong>
+
 							[[*{price}]] $
 						</h5>
 						<h5>
 							<strong>					
 								Description:
 							</strong>
+
 							[[*{description}]]
 						</h5>
 						
@@ -51,9 +54,8 @@
 						</strong>
 		
 						<ul>
-							<li 
-							  th:each="ingredient : *{ingredients}"
-							>						
+							<li
+							  th:each="ingredient : *{ingredients}">						
 								[[${ingredient.name}]]
 							</li>							
 						</ul>
@@ -67,14 +69,33 @@
 			<div class="col-3">
 				<h2 class="d-inline">Offers</h2>
 				
-				<a th:href="| /offers/create/*{id} |" class="btn btn-secondary d-inline">New Offer</a>
+				<a
+				  th:href="| /offers/create/*{id} |"
+				  class="btn btn-secondary d-inline"
+				  sec:authorize="hasAuthority('ADMIN')">
+					New Offer
+				</a>
 
-				<h6 class="mt-5" th:if="*{offers.size() < 1}">Non ci sono offerte..</h6>				
+				<h6
+				  class="mt-5"
+				  th:if="*{offers.size() < 1}">
+					Non ci sono offerte..
+				</h6>				
 				
-				<ul th:if="*{offers.size() > 0}" class="mt-5">
-					<li th:each="offer : *{offers}">
-						[[${offer.title}]] - 
-						<a th:href="| /offers/update/*{id}/${offer.id} |">Edit</a>
+				<ul
+				  th:if="*{offers.size() > 0}"
+				  class="mt-5">
+					<li
+					  th:each="offer : *{offers}">
+						[[${offer.title}]] 
+						<span
+						  sec:authorize="hasAuthority('ADMIN')">
+						 -	
+					<a
+					  th:href="| /offers/update/*{id}/${offer.id} |">
+							Edit
+						</a>
+						</span> 
 					</li>
 				</ul>
 				

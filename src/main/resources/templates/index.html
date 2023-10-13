@@ -13,14 +13,17 @@
 <title>La mia pizzeria - Pietro M.</title>
 </head>
 <body>
-	<header th:replace="~{frags/header :: header()}">
-		
-	</header>
+	<header th:replace="~{frags/header :: header()}"></header>
 	
 	
 	<div class="container mt-5">		
-		<div class="d-flex flex-row-reverse mt-4 me-4">
-			<a href="/create" class="btn btn-secondary">
+		<div
+		  class="d-flex flex-row-reverse mt-4 me-4">
+			
+			<a
+			  href="/create"
+			  class="btn btn-secondary"
+			  sec:authorize="hasAuthority('ADMIN')">
 				Add new pizza
 			</a>
 		</div>
@@ -37,7 +40,10 @@
 					<div class="card pm-card mb-4 position-relative">
 						
 						<div class="pm-img-container">						
-							<img class="card-img-top" th:alt="*{name}" th:src="*{getFullFotoUrl(fotoUrl)}">                             
+							<img
+							  class="card-img-top"
+							  th:alt="*{name}"
+							  th:src="*{getFullFotoUrl(fotoUrl)}">                          
 						</div>
 						
 						<h5 class="mt-2 text-center">					
@@ -46,14 +52,20 @@
 						
 						<div class="card-body " >
 							<p class="pm-pizza-desc">
-								<strong>Description: </strong>
+								<strong>
+									Description: 
+								</strong>
+
 								[[*{description}]]
 							</p>
 						</div>
 						
 						<div class="card-body ">
 							<p class="card-text">
-								<strong>Price: </strong>
+								<strong>
+									Price: 
+								</strong>
+
 								[[*{price}]] $
 							</p>
 							
@@ -61,19 +73,29 @@
 						<div class="row ps-2">
 							
 							<div class=" col-8">
-								<a th:href="| /pizza/*{id} |" class="btn btn-secondary">
+								<a
+								  th:href="| /pizza/*{id} |"
+								  class="btn btn-secondary">
 									See details
 								</a>
 							</div>
 							<div class=" col-4">
-								<a th:href="| /update/*{id} |" class="btn btn-dark">
+								<a
+								  th:href="| /update/*{id} |"
+								  class="btn btn-dark"
+								  sec:authorize="hasAuthority('ADMIN')">
 									Edit
 								</a>
 							</div>
 						</div>
-						<div class="pm-delete-btn mt-1 me-1">
-							<form th:action="@{/delete/{id}(id=*{id})}" method="POST">
-								<button type="submit" class="btn btn-danger">
+						<div class="pm-delete-btn mt-1 me-1"
+							 sec:authorize="hasAuthority('ADMIN')">
+							<form
+							  th:action="@{/delete/{id}(id=*{id})}"
+							  method="POST">
+								<button
+								  type="submit"
+								  class="btn btn-danger">
 									X
 								</button>
 							</form>
@@ -83,7 +105,11 @@
 
 			</div>
 			
-			<h3 class="text-center mt-5" th:if="${pizzas.size() == 0}">Non ci sono pizze da mostrare..</h3>
+			<h3
+			  class="text-center mt-5"
+			  th:if="${pizzas.size() == 0}">
+				Non ci sono pizze da mostrare..
+			</h3>
 		
 		</div>
 	</div>
